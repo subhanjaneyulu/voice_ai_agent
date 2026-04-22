@@ -1,0 +1,32 @@
+voice ai appointment system architecture diagram 
+____________________________________________________
+user voice input
+↓
+speech to text (whisper model)
+↓
+language detection and translation (to english)
+↓
+ai agent
+intent detection + doctor + date + time extraction
+↓
+tool orchestrator
+↓
+scheduling system
+booking | availability | cancel | reschedule
+↓
+text response generator
+↓
+text to speech (tts)
+↓
+voice output
+________________________________________________
+connections:
+ai agent → memory (save context)
+memory → ai agent (retrieve context)
+_________________________________________________
+flow:
+voice → stt → language → agent → memory → tools → scheduling → response → tts → voice
+______________________________________________________
+system explanation:
+this system converts user voice into text, detects intent using an ai agent, performs backend scheduling operations, and returns a voice response in real time.
+________________________________________________________
