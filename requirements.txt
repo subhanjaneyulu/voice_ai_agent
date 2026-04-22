@@ -3,3 +3,5 @@ uvicorn==0.29.0
 python-multipart
 deep-translator
 faster-whisper
+gTTS
+websockets
