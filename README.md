@@ -26,8 +26,18 @@ open the application in browser
 open api documentation
 http://127.0.0.1:8000/docs
 
-4 websocket endpoint
-ws://127.0.0.1:8000/ws
+websocket endpoint
+ws://127.0.0.1:8000/ws 
+
+********live deployment********
+
+the application is deployed and can be accessed using the following link
+https://voice-ai-agent-4-316w.onrender.com
+
+api documentation
+
+the swagger documentation for testing the apis is available at
+https://voice-ai-agent-4-316w.onrender.com/docs
 ______________________________________________________________________________________________________________
 
 ***architectural decisions
