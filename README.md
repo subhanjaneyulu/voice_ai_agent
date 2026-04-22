@@ -1,66 +1,51 @@
-***voice ai appointment system
+****setup instructions
 
-**overview
-this project is a voice based ai system that allows users to book cancel reschedule and check doctor appointments using voice input  
+first make sure python is installed in your system
 
-**features
- speech to text using whisper  
- multilingual support  
- ai agent for intent detection  
- appointment booking system  
- session memory  
- text to speech  
- websocket real time  
+open terminal in the project folder
 
-**how it works
-1 user gives voice input  
-2 speech converted to text  
-3 language detection and translation  
-4 ai agent processes request  
-5 tool orchestrator calls services  
-6 scheduling system executes  
-7 response generated  
-8 text converted to speech  
+create virtual environment
+python -m venv venv
 
-**run project
-uvicorn backend.api.main:app --reload  
+activate virtual environment
 
-**example
-input:  
-book cardiologist tomorrow  
+for windows
+venv\scripts\activate
 
-output:  
-your appointment with dr sharma is booked  
+for mac or linux
+source venv/bin/activate
 
-**technologies
-python fastapi whisper websocket  
+install required packages
+pip install fastapi uvicorn faster-whisper deep-translator
 
-
-**run the project
-
-1 open terminal
-
-2 go to project folder
-
-3 run command
-
+run the server
+run the server
 uvicorn backend.api.main:app --reload
 
-4 open browser
-
+open the application in browser
+open api documentation
 http://127.0.0.1:8000/docs
 
-
-**websocket testing
-
-connect using websocket:
-
+4 websocket endpoint
 ws://127.0.0.1:8000/ws
+______________________________________________________________________________________________________________
 
-send message example:
+***architectural decisions
+________________________
+the system is designed using a modular approach where each component has a clear responsibility. speech to text is handled using whisper model. language detection and translation convert all input into english. the ai agent extracts intent doctor date and time. the tool orchestrator decides which backend service to call. the scheduling system handles booking availability cancel and reschedule. text to speech converts the final response into audio. this structure makes the system easy to maintain and scalable.
+__________________________________________________________________________________________
 
-book cardiologist tomorrow
+***memory design
+_________________
+the system uses session based memory to store user context such as doctor date and time. this helps when the user gives incomplete input. for example if the user first says book appointment and then says tomorrow the system remembers previous data and completes the request. currently memory is stored in runtime and will reset when the server restarts.
 
-you will receive:
-
-your appointment with dr sharma is booked for tomorrow at 10:30 am
+____________________________________________________________________________________________________________________
+****latency breakdown
+speech to text takes the most time depending on audio length. agent processing is fast because it uses simple logic. tool execution is very fast as it uses in memory data. text to speech adds a small delay. overall the system responds quickly and supports near real time interaction.
+___________________________________________________________________________________________________________________ 
+***tradeoffs
+the system uses an in memory database instead of a real database to keep it simple. rule based logic is used instead of complex ai models for faster performance. only a limited set of doctor specialties is supported. cpu based processing is used instead of gpu to keep the system lightweight. these decisions improve speed but limit scalability.
+___________________________________________________________________________________________________________________ 
+****known limitations
+tamil speech recognition may not be highly accurate. data is not stored permanently and will be lost after restart. the system supports only limited doctor types. time understanding is basic and may not handle complex sentences. there is no user authentication implemented.
+_________________________________________________________________________________________________________________________
