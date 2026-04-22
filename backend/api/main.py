@@ -22,7 +22,7 @@ def health():
     return {"status": "Server is running"}
 
 
-model = WhisperModel("small", device="cpu", compute_type="int8")
+model = WhisperModel("tiny", device="cpu", compute_type="int8")
 
 LANG_NAMES = {
     "hi": "Hindi",
